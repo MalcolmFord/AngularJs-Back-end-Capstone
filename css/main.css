@@ -1,0 +1,27 @@
+.navbar_row {
+  background-color: green;
+}
+.logo a{
+  color: white;
+  font-size: 30px;
+}
+a:link, a:active, a:visited, a:hover, a:focus {
+  text-decoration: none;
+}
+img {
+  height: 2000%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero_image_container {
+  background-color: black;
+  height: 400px;
+}
+#login {
+  color: white;
+}
+.sign_in_container {
+  margin-top: 5%;
+}
