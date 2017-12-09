@@ -25,3 +25,15 @@ img {
 .sign_in_container {
   margin-top: 5%;
 }
+
+/* User Home Page styles */
+.left_side_bar {
+  background-color: darkgrey;
+}
+.right_side_bar {
+  background-color: grey;
+}
+.mid-top-container {
+  border: 2px solid black;
+}
+/* End of user Home Page styles */

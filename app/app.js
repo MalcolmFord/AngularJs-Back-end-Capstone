@@ -6,7 +6,7 @@ app.config(($routeProvider) => {
   $routeProvider
     .when('/', {
       templateUrl: './partials/homepage.html',
-      controller: 'views'
+      controller: 'home_page'
     })
     .when('/login', {
       templateUrl: './partials/login.html',
@@ -15,5 +15,9 @@ app.config(($routeProvider) => {
     .when('/signup', {
       templateUrl: './partials/signup.html',
       controller: 'signin'
+    })
+    .when('/user_profile', {
+      templateUrl: './partials/user_profile.html',
+      controller: 'home_page'
     });
 });
