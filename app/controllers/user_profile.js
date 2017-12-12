@@ -3,7 +3,6 @@
 app.controller('user_profile', function ($scope, $routeParams, database) {
   const get_current_user = function () {
     console.log('aaa', database.get_current_user());
-
     return database.get_current_user();
   };
   $scope.post = {

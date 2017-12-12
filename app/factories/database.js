@@ -5,11 +5,16 @@ app.factory('database', function ($q, $http, $window) {
   const URL = 'http://localhost:3001';
 
   // This is the user auth token and user id.
-  let token;
-  let current_user;
+  var token;
+  var current_user;
   const get_current_user = function () {
+    return current_user;
   };
-
+  // This will return the auth token
+  const get_token = function () {
+    // console.log('database token', token);
+    return token;
+  };
   // **************************** These are the auth functions ****************************************
 
   // This will take the user's email and password before they'er hashed, send them to the api, get the token and store it.
@@ -31,10 +36,10 @@ app.factory('database', function ($q, $http, $window) {
       let user_inputs = JSON.stringify(a);
       $http.post(`${URL}/users`, user_inputs)
         .then((data) => {
+          set_token(a)
+        })
+        .then(() => {
           resolve(data);
-          set_token(a);
-        }).then(() => {
-          $window.location.href = '#!/user_profile';
         })
         .catch((error) => {
           // console.log('error creating a new user', error);
@@ -51,19 +56,9 @@ app.factory('database', function ($q, $http, $window) {
         .then((data) => {
           token = data.data.auth_token;
           current_user = data.data.user_id;
-        })
-        .then(() => {
-          $window.location.href = '#!/user_profile';
+          resolve(data);
         });
     });
-  };
-
-
-  // This will return the auth token
-  const get_token = function () {
-    // console.log('database token', token);
-
-    return token;
   };
   // This will return the user's id
   // ***************************** End of auth functions *****************************************
@@ -107,6 +102,8 @@ app.factory('database', function ($q, $http, $window) {
         headers: { 'Authorization': `${token}` }
       })
         .then((data) => {
+          console.log('post data', data);
+
           resolve(data);
         })
         .catch((error) => {
