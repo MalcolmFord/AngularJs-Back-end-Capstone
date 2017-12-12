@@ -2,22 +2,40 @@
 <div class="container-fluid">
 
   <div class="row">
+    <!-- White space -->
+    <div class="col-md-1">
 
+    </div>
     <!-- left sidebar -->
     <div class="col-md-2 left_side_bar">
       <ul class="technologies-container">
         <li ng-repeat="tech in technologies">
-          {{tech.name}}
+          {{tech.Name}}
         </li>
       </ul>
     </div>
 
     <!-- Center stack -->
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="row">
+        <!-- This will hold the input box, that will allow the user to make a new post -->
         <div class="col-md-12 mid-top-container">
+          <input type="text" name="new_post" placeholder="WATCH'YA CODING?" ng-model="post.Post">
+          <input type="submit" name="Post" ng-click="create_post()">
+        </div>
+      </div>
+
+      <!-- This will contain the posts made be the user. -->
+      <div class="row">
+        <!-- White space -->
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 post_container">
+          <!-- This container is to hold the post -->
 
         </div>
+        <!-- White space -->
+        <div class="col-md-3"></div>
       </div>
     </div>
 

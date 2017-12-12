@@ -17,7 +17,7 @@ app.controller('signin', function ($scope, $routeParams, database) {
   $scope.create_account = function () {
     database.create_account($scope.user_inputs)
       .then((data) => {
-        console.log('data returned', data.data);
+        // console.log('data returned', data.data);
       });
   };
 

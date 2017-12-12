@@ -18,6 +18,6 @@ app.config(($routeProvider) => {
     })
     .when('/user_profile', {
       templateUrl: './partials/user_profile.html',
-      controller: 'home_page'
+      controller: 'user_profile'
     });
 });
