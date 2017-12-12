@@ -112,7 +112,24 @@ app.factory('database', function ($q, $http, $window) {
         });
     });
   };
-  return { create_account, get_technologies, set_token, login, create_post, get_current_user, get_token };
+  // This pulls the user's post
+  const pull_posts = function () {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/users/${current_user}/personal_posts/${current_user}`, {
+        headers: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+          // console.log('database pulled posts', data);
+
+          resolve(data);
+        })
+        .catch((error) => {
+          console.log('error pulling posts', error);
+
+        });
+    });
+  };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token };
 });
 // const getAllCompetitions = () => {
 //   return $q((resolve, reject) => {

@@ -17,16 +17,17 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
 
     database.create_post($scope.post)
       .then((data) => {
-        // pull_posts();
+        pull_posts();
       });
   };
 
 
   // This will pull the down the post's from the user's profile.
   const pull_posts = function () {
-    database.pull_posts
+    database.pull_posts()
       .then((data) => {
-        $scope.pulled_posts = data;
+        console.log('these are the pulled posts', data.data.data);
+        $scope.pulled_posts = data.data.data;
       });
   };
   // This is calling the database to pull down a list of technologies, which will then be displayed in the dom through a ng-repeat
@@ -46,4 +47,5 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
   let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
   get_current_user();
+  pull_posts();
 });
