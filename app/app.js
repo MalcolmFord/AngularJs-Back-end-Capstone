@@ -22,6 +22,10 @@ app.config(($routeProvider) => {
     })
     .when('/new_technology', {
       templateUrl: './partials/new_technology.html',
+      controller: 'new_technology'
+    })
+    .when('/technology/:id', {
+      templateUrl: './partials/technology.html',
       controller: 'technology'
     });
 });

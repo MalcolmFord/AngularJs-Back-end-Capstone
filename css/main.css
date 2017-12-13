@@ -8,17 +8,7 @@
 a:link, a:active, a:visited, a:hover, a:focus {
   text-decoration: none;
 }
-img {
-  height: 2000%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-.hero_image_container {
-  background-color: black;
-  height: 400px;
-}
+
 #login {
   color: white;
 }
@@ -26,7 +16,11 @@ img {
   margin-top: 5%;
 }
 
-/* User Home Page styles */
+/* *************************User Home Page styles ***************************************/
+.hero_image_container {
+  background-color: black;
+  height: 400px;
+}
 .left_side_bar {
   background-color: darkgrey;
 }
@@ -39,4 +33,36 @@ img {
 .post_container{
   border: 2px solid black;
 }
-/* End of user Home Page styles */
+.card {
+  background-color: black;
+}
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+}
+/****************************** End of user Home Page styles *****************************/
+
+/* ********************************** Technology Page ************************************ */
+
+.tech_heading_row{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.tech_heading{
+  margin: 0;
+  padding: 0;
+}
+.tech_h1{
+  margin: 0;
+  text-align: center;
+}
+.tech_p{
+  margin: 0;
+  text-align: center;
+}
+.tech_post_container{
+  border: 3px solid black;
+}
+.tech_noticiactions{
+  border: 2px solid black;
+}

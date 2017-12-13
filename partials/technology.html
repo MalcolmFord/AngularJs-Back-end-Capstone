@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <!-- This is for the Tech name, and it's description -->
+  <div class="row tech_heading_row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4 tech_heading">
+      <h1 class="tech_h1">{{technology_name}}</h1>
+      <p class="tech_p">{{technology_description}}</p>
+    </div>
+    <div class=" col-md-4 ">
+      <button class="button">Message Board </button>
+    </div>
+  </div>
+
+  <!-- This row will hold the actual context of the page -->
+  <div class="row tech_body">
+    <!-- This is white space on far left -->
+    <div class="col-md-1"></div>
+    <!-- This is the post container -->
+    <div class="col-md-5">
+      <div class="tech_post_container">
+        <li class="tech_post_admin" ng-repeat="post in admin_posts">
+          <!-- This will be the actuall posts made by the admin -->
+          {{post.Post}}
+        </li>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <!-- *******This will be the input box for Admin posts**********************-->
+          <div class="col-md-6">
+            <!-- This should only be seen if the user is the admin -->
+            <input type="text" placeholder="Make a post" ng-model="admin_post">
+            <input type="submit" name="Post" ng-click="new_admin_post();">
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+    </div>
+    <!-- White space -->
+    <div class="col-md-2"></div>
+    <div class="col-md-3 tech_noticiactions">
+      Upcoming events
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <input type="text" placeholder="Upcoming Event?">
+          <input type="submit" name="Post">
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

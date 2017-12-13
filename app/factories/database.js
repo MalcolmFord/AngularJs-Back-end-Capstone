@@ -63,6 +63,16 @@ app.factory('database', function ($q, $http, $window) {
   // This will return the user's id
   // ***************************** End of auth functions *****************************************
 
+
+
+
+
+
+
+
+
+
+
   // **************************** Technology ************************************************
   // This will pull down all of the Technologies
   const get_technologies = function (token) {
@@ -82,6 +92,44 @@ app.factory('database', function ($q, $http, $window) {
       $http.post(`${URL}/technologies`, data, {
         headers: { 'Authorization': `${token}` }
       })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  const pull_technology = function (a) {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/technologies/${a}`, {
+        header: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.log('There was a problem getting the technology posts', error);
+        });
+    });
+  };
+  const new_admin_post = function (a, b) {
+    return $q((resolve, reject) => {
+      let new_data = JSON.stringify(b);
+      $http.post(`${URL}/technologies/${a}/technology_posts`, new_data, {
+        header: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  const pull_admin_posts = function (a) {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/technologies/${a}/technology_posts/${a}`)
         .then((data) => {
           resolve(data);
         })
@@ -137,7 +185,9 @@ app.factory('database', function ($q, $http, $window) {
         });
     });
   };
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology };
+
+  // *************************End of post functions ******************************************
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts };
 });
 // const getAllCompetitions = () => {
 //   return $q((resolve, reject) => {

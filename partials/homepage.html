@@ -7,8 +7,18 @@
     </div>
   </div>
   <div class="row card_container">
-    <div class="card">
+    <!-- This is the card it self. It will repeat, to show all the technologies -->
+    <div class="col-md-3" ng-repeat="card in card">
 
+      <div class="card" style="width: 20rem;">
+        <img class="img-fluid" src="./images/images.jpg" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{card.Name}}</h4>
+          <p class="card-text">{{card.Description}}</p>
+          <a ng-href="#!/technology/{{card.id}}" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
