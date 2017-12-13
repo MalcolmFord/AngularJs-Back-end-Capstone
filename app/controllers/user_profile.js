@@ -9,6 +9,14 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     "User_id": get_current_user(),
     "Post": ""
   };
+  // This will pull the down the post's from the user's profile.
+  const pull_posts = function () {
+    database.pull_posts()
+      .then((data) => {
+        console.log('these are the pulled posts', data.data.data);
+        $scope.pulled_posts = data.data.data;
+      });
+  };
 
   // This is creating the post, and sending it to the database
   $scope.create_post = function () {
@@ -22,14 +30,7 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
   };
 
 
-  // This will pull the down the post's from the user's profile.
-  const pull_posts = function () {
-    database.pull_posts()
-      .then((data) => {
-        console.log('these are the pulled posts', data.data.data);
-        $scope.pulled_posts = data.data.data;
-      });
-  };
+
   // This is calling the database to pull down a list of technologies, which will then be displayed in the dom through a ng-repeat
   const pulled_technologies = function () {
     database.get_technologies()

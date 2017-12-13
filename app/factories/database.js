@@ -36,9 +36,9 @@ app.factory('database', function ($q, $http, $window) {
       let user_inputs = JSON.stringify(a);
       $http.post(`${URL}/users`, user_inputs)
         .then((data) => {
-          set_token(a)
+          set_token(a);
         })
-        .then(() => {
+        .then((data) => {
           resolve(data);
         })
         .catch((error) => {
@@ -63,26 +63,7 @@ app.factory('database', function ($q, $http, $window) {
   // This will return the user's id
   // ***************************** End of auth functions *****************************************
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // **************************** Technology ************************************************
   // This will pull down all of the Technologies
   const get_technologies = function (token) {
     return $q((resolve, reject) => {
@@ -94,6 +75,33 @@ app.factory('database', function ($q, $http, $window) {
         });
     });
   };
+  // This will create a technology communtiy
+  const create_new_technology = function (a) {
+    return $q((resolve, reject) => {
+      let data = JSON.stringify(a);
+      $http.post(`${URL}/technologies`, data, {
+        headers: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+
+
+
+
+
+
+
+
+
+
+  // ************************** Posts ****************************************
   // This will create posts
   const create_post = function (a) {
     return $q((resolve, reject) => {
@@ -129,7 +137,7 @@ app.factory('database', function ($q, $http, $window) {
         });
     });
   };
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology };
 });
 // const getAllCompetitions = () => {
 //   return $q((resolve, reject) => {

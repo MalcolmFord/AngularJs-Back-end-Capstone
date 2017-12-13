@@ -19,5 +19,9 @@ app.config(($routeProvider) => {
     .when('/user_profile', {
       templateUrl: './partials/user_profile.html',
       controller: 'user_profile'
+    })
+    .when('/new_technology', {
+      templateUrl: './partials/new_technology.html',
+      controller: 'technology'
     });
 });

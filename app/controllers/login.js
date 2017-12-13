@@ -12,7 +12,7 @@ app.controller('login', function ($scope, $routeParams, database, $window) {
       .then((data) => {
         console.log('Logged in data', data);
         $window.location.href = '#!/user_profile';
-      })
+      });
   };
 
 });
