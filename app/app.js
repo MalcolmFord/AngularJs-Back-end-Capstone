@@ -27,5 +27,9 @@ app.config(($routeProvider) => {
     .when('/technology/:id', {
       templateUrl: './partials/technology.html',
       controller: 'technology'
+    })
+    .when('/message_board', {
+      templateUrl: './partials/message_board.html',
+      controller: 'message_board'
     });
 });

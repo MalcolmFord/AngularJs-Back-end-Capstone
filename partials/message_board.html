@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <!-- This is the heading of the message board -->
+  <div class="row tech_heading_row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4 tech_heading">
+      <h1 class="tech_h1">{{technology_name}}</h1>
+      <p class="tech_p">message board</p>
+    </div>
+    <div class=" col-md-4 ">
+    </div>
+  </div>
+  <!-- This section will be the message board area -->
+  <div class="row">
+    <div class="col-md-1"></div>
+    <!-- This is the main space for the messages to be displayed -->
+    <div class="col-md-10">
+      <!-- This row will hold the actuall messages -->
+      <div class="row"></div>
+      <!-- This row will hold the user inputs -->
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <input type="text" placeholder="What's on your mind?" ng-model="message_input">
+          <input type="submit" name="Post" ng-click="add_post();">
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+
+</div>
