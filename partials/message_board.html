@@ -15,11 +15,14 @@
     <!-- This is the main space for the messages to be displayed -->
     <div class="col-md-10">
       <!-- This row will hold the actuall messages -->
-      <div class="row"></div>
+      <div class="row">
+        <li ng-repeat="message in messages"></li>
+      </div>
       <!-- This row will hold the user inputs -->
       <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
+          <!-- These are the actuall inputs -->
           <input type="text" placeholder="What's on your mind?" ng-model="message_input">
           <input type="submit" name="Post" ng-click="add_post();">
         </div>

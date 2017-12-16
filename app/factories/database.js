@@ -187,7 +187,39 @@ app.factory('database', function ($q, $http, $window) {
   };
 
   // *************************End of post functions ******************************************
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts };
+
+  // ****************************** Message board functions ****************************
+  const add_new_message_post = function (a, b) {
+    return $q((resolve, reject) => {
+      let data = JSON.stringify(a);
+      console.log('stringified data', data);
+
+      $http.post(`${URL}/technologies/${b}/messageboards`, data, {
+        headers: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+  // Pull messages
+  const pull_message_board_messages = function (a) {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/technologies/${a}/messageboards`, {
+        headers: { 'Authorization': `${token}` }
+      })
+        .then((data) => {
+          resolve(data);
+        });
+    });
+  };
+
+  // ********************************* End of Message board functions ***********************
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages };
 });
 // const getAllCompetitions = () => {
 //   return $q((resolve, reject) => {

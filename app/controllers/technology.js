@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('technology', function ($scope, $routeParams, database) {
+app.controller('technology', function ($scope, $routeParams, database, $window) {
   // This is taking the route params id, also getting the current user
   let route_id = $routeParams.id;
   let user_id = database.get_current_user();
@@ -35,6 +35,9 @@ app.controller('technology', function ($scope, $routeParams, database) {
       .then((data) => {
         pull_admin_posts();
       });
+  };
+  $scope.redirect = function () {
+    $window.location.href = `#!/message_board/${route_id}`;
   };
   pull_technology_info();
   pull_admin_posts();

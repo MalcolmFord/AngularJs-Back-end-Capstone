@@ -28,7 +28,7 @@ app.config(($routeProvider) => {
       templateUrl: './partials/technology.html',
       controller: 'technology'
     })
-    .when('/message_board', {
+    .when('/message_board/:id', {
       templateUrl: './partials/message_board.html',
       controller: 'message_board'
     });
