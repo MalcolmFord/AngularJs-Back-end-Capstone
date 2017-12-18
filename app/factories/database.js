@@ -192,13 +192,13 @@ app.factory('database', function ($q, $http, $window) {
   const add_new_message_post = function (a, b) {
     return $q((resolve, reject) => {
       let data = JSON.stringify(a);
-      console.log('stringified data', data);
+      console.log('stringified data', a);
 
-      $http.post(`${URL}/technologies/${b}/messageboards`, data, {
+      $http.post(`${URL}/technologies/${b}/messageboards`, a, {
         headers: { 'Authorization': `${token}` }
       })
         .then((data) => {
-
+          resolve(data);
         })
         .catch((error) => {
           reject(error);
@@ -214,6 +214,9 @@ app.factory('database', function ($q, $http, $window) {
       })
         .then((data) => {
           resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
         });
     });
   };

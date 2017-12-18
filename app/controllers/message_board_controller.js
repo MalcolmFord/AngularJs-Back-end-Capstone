@@ -9,7 +9,15 @@ app.controller('message_board', function ($scope, $routeParams, database) {
         $scope.technology_name = data.data.data.Name;
       });
   };
+  // This pulls the messages down from the database
+  const pull_messages = function () {
+    database.pull_message_board_messages(route_id)
+      .then((data) => {
+        console.log('pulled messages', data);
 
+        $scope.messages = data.data.data;
+      });
+  };
   // This creates a new post
   $scope.add_post = function () {
     let message_input = $scope.message_input;
@@ -17,7 +25,7 @@ app.controller('message_board', function ($scope, $routeParams, database) {
       "user_id": database.get_current_user(),
       "technology_id": route_id,
       "post": message_input
-    }
+    };
     console.log('new message', new_message);
     console.log('route id', route_id);
 
@@ -29,13 +37,6 @@ app.controller('message_board', function ($scope, $routeParams, database) {
       });
   };
 
-  const pull_messages = function () {
-    database.pull_message_board_messages(route_id)
-      .then((data) => {
-        console.log('pulled messages', data);
 
-        $scope.messages = data.data.data;
-      });
-  };
   pull_messages();
 });
