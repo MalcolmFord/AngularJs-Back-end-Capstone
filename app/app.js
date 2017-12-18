@@ -1,6 +1,6 @@
 'use strict';
 //Sets up the use of angular with Aardvark, ngRoute sets up what is viewable in the ng-view portion of the index.
-const app = angular.module("Codemunity", ["ngRoute"]);
+const app = angular.module("Codemunity", ["ngRoute", "ngCookies"]);
 
 app.config(($routeProvider) => {
   $routeProvider
