@@ -14,7 +14,6 @@ app.controller('message_board', function ($scope, $routeParams, database) {
     database.pull_message_board_messages(route_id)
       .then((data) => {
         console.log('pulled messages', data);
-
         $scope.messages = data.data.data;
       });
   };
