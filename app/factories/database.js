@@ -1,12 +1,33 @@
 'use strict';
 
-app.factory('database', function ($q, $http, $window) {
+app.factory('database', function ($q, $http, $window, $cookies) {
   // Gloabal variables
   const URL = 'http://localhost:3001';
 
   // This is the user auth token and user id.
   var token;
   var current_user;
+  // *************************** Cookies ************************************
+  const set_cookies = function () {
+    var new_cookie = $cookies.put('auth_token', token);
+    var new_cookie_user = $cookies.put('current_user', current_user);
+    return new_cookie, new_cookie_user;
+  };
+  const get_cookies = function () {
+    // Getting the cookies
+    var cookie_user_auth = $cookies.get('auth_token');
+    var cookie_user_id = $cookies.get('current_user');
+    // Setting the gloabal variables and the cookies equal
+    current_user = cookie_user_id;
+    token = cookie_user_auth;
+    // Placing them both into an object to be returned
+    var both_cookies = {
+      "user_id": cookie_user_id,
+      "user_auth": cookie_user_auth
+    };
+    return both_cookies;
+
+  };
   const get_current_user = function () {
     return current_user;
   };
@@ -56,22 +77,15 @@ app.factory('database', function ($q, $http, $window) {
         .then((data) => {
           token = data.data.auth_token;
           current_user = data.data.user_id;
+          set_cookies();
+          console.log('cookies', get_cookies());
           resolve(data);
+
         });
     });
   };
   // This will return the user's id
   // ***************************** End of auth functions *****************************************
-
-
-
-
-
-
-
-
-
-
 
   // **************************** Technology ************************************************
   // This will pull down all of the Technologies
@@ -90,7 +104,7 @@ app.factory('database', function ($q, $http, $window) {
     return $q((resolve, reject) => {
       let data = JSON.stringify(a);
       $http.post(`${URL}/technologies`, data, {
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           resolve(data);
@@ -103,7 +117,7 @@ app.factory('database', function ($q, $http, $window) {
   const pull_technology = function (a) {
     return $q((resolve, reject) => {
       $http.get(`${URL}/technologies/${a}`, {
-        header: { 'Authorization': `${token}` }
+        header: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           resolve(data);
@@ -117,7 +131,7 @@ app.factory('database', function ($q, $http, $window) {
     return $q((resolve, reject) => {
       let new_data = JSON.stringify(b);
       $http.post(`${URL}/technologies/${a}/technology_posts`, new_data, {
-        header: { 'Authorization': `${token}` }
+        header: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           resolve(data);
@@ -155,7 +169,7 @@ app.factory('database', function ($q, $http, $window) {
     return $q((resolve, reject) => {
       let post = JSON.stringify(a);
       $http.post(`${URL}/users/${current_user}/personal_posts`, post, {
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           console.log('post data', data);
@@ -171,10 +185,16 @@ app.factory('database', function ($q, $http, $window) {
   // This pulls the user's post
   const pull_posts = function () {
     return $q((resolve, reject) => {
-      $http.get(`${URL}/users/${current_user}/personal_posts/${current_user}`, {
-        headers: { 'Authorization': `${token}` }
+      var toke = get_cookies();
+      console.log('pulling post cookiees', toke.user_auth);
+      var authorization = toke.user_auth;
+      var user = toke.user_id;
+      $http.get(`${URL}/users/${user}/personal_posts/${user}`, {
+        headers: { 'Authorization': `${authorization}` }
       })
         .then((data) => {
+          console.log('pulled data cookies', get_cookies());
+
           // console.log('database pulled posts', data);
 
           resolve(data);
@@ -195,7 +215,7 @@ app.factory('database', function ($q, $http, $window) {
       console.log('stringified data', a);
 
       $http.post(`${URL}/technologies/${b}/messageboards`, a, {
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           resolve(data);
@@ -210,7 +230,7 @@ app.factory('database', function ($q, $http, $window) {
   const pull_message_board_messages = function (a) {
     return $q((resolve, reject) => {
       $http.get(`${URL}/technologies/${a}/messageboards`, {
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
           resolve(data);
@@ -220,9 +240,9 @@ app.factory('database', function ($q, $http, $window) {
         });
     });
   };
-
+  // get_cookies();
   // ********************************* End of Message board functions ***********************
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies };
 });
 // const getAllCompetitions = () => {
 //   return $q((resolve, reject) => {
