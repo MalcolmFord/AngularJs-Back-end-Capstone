@@ -19,16 +19,14 @@ app.controller('message_board', function ($scope, $routeParams, database) {
   };
   // This creates a new post
   $scope.add_post = function () {
-    let message_input = $scope.message_input;
     let new_message = {
-      "user_id": database.get_current_user(),
-      "technology_id": route_id,
-      "post": message_input
+      "User_id": database.get_current_user(),
+      "Technology_id": route_id,
+      "post": $scope.message_input
     };
     console.log('new message', new_message);
     console.log('route id', route_id);
 
-    console.log('message input', message_input);
     database.add_new_message_post(new_message, route_id)
       .then((data) => {
         console.log('message data', data);

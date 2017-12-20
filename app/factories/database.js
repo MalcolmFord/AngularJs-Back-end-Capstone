@@ -210,12 +210,16 @@ app.factory('database', function ($q, $http, $window, $cookies) {
 
   // ****************************** Message board functions ****************************
   const add_new_message_post = function (a, b) {
+    var toke = get_cookies();
+    console.log('pulling post cookiees', toke.user_auth);
+    var authorization = toke.user_auth;
+    var user = toke.user_id;
     return $q((resolve, reject) => {
       let data = JSON.stringify(a);
       console.log('stringified data', a);
 
       $http.post(`${URL}/technologies/${b}/messageboards`, a, {
-        headers: { 'Authorization': `${get_cookies()}` }
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
       })
         .then((data) => {
           resolve(data);
@@ -228,9 +232,13 @@ app.factory('database', function ($q, $http, $window, $cookies) {
 
   // Pull messages
   const pull_message_board_messages = function (a) {
+    var toke = get_cookies();
+    console.log('pulling post cookiees', toke.user_auth);
+    var authorization = toke.user_auth;
+    var user = toke.user_id;
     return $q((resolve, reject) => {
       $http.get(`${URL}/technologies/${a}/messageboards`, {
-        headers: { 'Authorization': `${get_cookies()}` }
+        headers: { 'Authorization': `${authorization}` }
       })
         .then((data) => {
           resolve(data);
