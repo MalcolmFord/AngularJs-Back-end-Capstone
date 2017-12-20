@@ -5,6 +5,7 @@
       <div class="new_technology_form">
         <input type="text" placeholder="Community name" ng-model="new_technology.Name">
         <input type="text" placeholder="Description" ng-model="new_technology.Description">
+        <input type="file" name="image" id="technology_image_upload" ng-model="image_to_upload">
         <button type="submit" ng-click="create_new_technology()">Create Community</button>
       </div>
     </div>
