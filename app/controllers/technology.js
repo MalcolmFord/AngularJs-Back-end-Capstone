@@ -1,32 +1,36 @@
 'use strict';
 
 app.controller('technology', function ($scope, $routeParams, database, $window) {
-  // This is taking the route params id, also getting the current user
+  // ********************************** GLOBAL VARIABLES ***********************************
   let route_id = $routeParams.id;
-  let user_id = database.get_current_user();
-  // This will pull the technology posts based on the technology id.
+  let current_user;
+  let returned_user_block = database.get_cookies();
+  let returned_user = returned_user_block.user_id;
+  var update_id;
+  // ********************************** END OF GLOBAL VARIABLES ***************************************
+
+  // This will pull the technology posts based on the technology id, which is (route_id).
   const pull_technology_info = function () {
     database.pull_technology(route_id)
       .then((data) => {
-        console.log('data from technologies', data.data.data.Name);
         $scope.technology_name = data.data.data.Name;
         $scope.technology_description = data.data.data.Description;
       });
   };
-  // This will pull the admin posts
+
+  // This will pull the admin posts using (route_id)
   const pull_admin_posts = function () {
     database.pull_admin_posts(route_id)
       .then((data) => {
-        console.log('pulled admin posts', data.data.data);
         $scope.admin_posts = data.data.data;
       });
   };
 
-  // This is taking takeing the user's input and sending it to the database.
+  // This is taking takeing the user's input and creating a new post.
   $scope.new_admin_post = function () {
     let admin_input = $scope.admin_post;
     let new_post = {
-      "User_id": user_id,
+      "User_id": returned_user,
       "Technology_id": route_id,
       "Post": admin_input
     };
@@ -36,9 +40,44 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
         pull_admin_posts();
       });
   };
+
+  // Redirects the user to the specific message board
   $scope.redirect = function () {
     $window.location.href = `#!/message_board/${route_id}`;
   };
+
+  // This will update the input box with the post to be updated
+  $scope.edit = function (a) {
+    console.log('edit clicked', a);
+    // This is taking the post's id, sending it to the database, getting that same post back, and setting the input box equal to that post's value
+    console.log('fetched post data', a.Post);
+    $scope.admin_post = a.Post;
+    update_id = a.id;
+    // This will mark a variable true, so that the update button shows
+  };
+
+  // this will update the post
+  $scope.update = function () {
+    let new_update_post = {
+      "User_id": returned_user,
+      "Technology_id": route_id,
+      "Post": $scope.admin_post
+    };
+    database.update_tech_post(update_id, new_update_post)
+      .then(() => {
+        pull_admin_posts();
+      });
+  };
+
+  // This will delete the post
+  $scope.delete = function (a) {
+    database.delete_post(route_id, a)
+      .then(() => {
+        pull_admin_posts();
+      });
+  };
+
+
   pull_technology_info();
   pull_admin_posts();
 });

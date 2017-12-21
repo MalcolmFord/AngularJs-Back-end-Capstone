@@ -21,6 +21,8 @@
         <li class="tech_post_admin" ng-repeat="post in admin_posts">
           <!-- This will be the actuall posts made by the admin -->
           {{post.Post}}
+          <button ng-click=edit(post)>Edit</button>
+          <button ng-click="delete(post.id)">Delete</button>
         </li>
         <div class="row">
           <div class="col-md-3"></div>
@@ -29,6 +31,7 @@
             <!-- This should only be seen if the user is the admin -->
             <input type="text" placeholder="Make a post" ng-model="admin_post">
             <input type="submit" name="Post" ng-click="new_admin_post();">
+            <input type="submit" value="Update" ng-click="update()">
           </div>
           <div class="col-md-3"></div>
         </div>
