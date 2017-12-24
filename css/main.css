@@ -1,3 +1,9 @@
+/* ***************** General / Global ************************ */
+li {
+  list-style: none;
+}
+
+/* ****************** Navbar ************************************* */
 .navbar_row {
   background-color: green;
 }
@@ -7,6 +13,7 @@
 }
 a:link, a:active, a:visited, a:hover, a:focus {
   text-decoration: none;
+  color: white;
 }
 
 #login {

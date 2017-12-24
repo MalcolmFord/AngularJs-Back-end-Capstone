@@ -20,7 +20,7 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
 
   // This is creating the post, and sending it to the database
   $scope.create_post = function () {
-    let post = $scope.new_post;
+    // let post = $scope.new_post;
     // console.log('post', $scope.post);
 
     database.create_post($scope.post)
