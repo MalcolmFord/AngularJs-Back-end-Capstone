@@ -77,7 +77,34 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
       });
   };
 
+  // ************************** Beggining of the upcoming events functions
+  // Pulls down the events
+  const pull_events = function () {
+    database.pull_events(route_id)
+      .then((data) => {
+        $scope.events = data.data.data;
+        console.log('events data', $scope.events);
+      });
+  };
+  $scope.new_event = {
+    "User_id": returned_user,
+    "Technology_id": route_id,
+    "post": "",
+    "location": "",
+    "time": "",
+    "date": ""
+  };
+  // Creates a new event
+  $scope.add_new_event = function () {
+    console.log('the sent data', $scope.new_event);
+
+    database.add_new_event($scope.new_event)
+      .then((data) => {
+        pull_events();
+      });
+  };
 
   pull_technology_info();
   pull_admin_posts();
+  pull_events();
 });

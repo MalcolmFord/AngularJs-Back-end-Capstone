@@ -1,19 +1,35 @@
 /* ***************** General / Global ************************ */
+html, body {
+  background-color: rgb(235, 233, 233);
+}
 li {
   list-style: none;
 }
+.view{
+  position: relative;
+  top: 43px;
+}
+.container-fluid{
+}
+a:link, a:active, a:visited, a:hover, a:focus {
+  text-decoration: none;
+  color: white;
+}
 
 /* ****************** Navbar ************************************* */
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+}
 .navbar_row {
   background-color: green;
 }
 .logo a{
   color: white;
   font-size: 30px;
-}
-a:link, a:active, a:visited, a:hover, a:focus {
-  text-decoration: none;
-  color: white;
 }
 
 #login {
@@ -37,9 +53,6 @@ a:link, a:active, a:visited, a:hover, a:focus {
 .mid-top-container {
   border: 2px solid black;
 }
-.post_container{
-  border: 2px solid black;
-}
 .card {
   background-color: black;
 }
@@ -49,6 +62,36 @@ a:link, a:active, a:visited, a:hover, a:focus {
 }
 /****************************** End of user Home Page styles *****************************/
 
+
+/* ******************************* User profile page **************************** */
+.actual_profile_post {
+  /* background: rgba(0 ,0 ,0, 0.7); */
+  margin: 5px;
+  padding: 0px;
+  /* color: white; */
+  background-color: white;
+  border: 2px solid silver;
+}
+.post_container{
+  /* box-shadow: 0px 10px 25px black; */
+  padding: 0;
+  margin: 0;
+}
+.comments_link, .comments_link:link, .comments_link:active, .comments_link:hover{  
+  color: green !important;
+}
+.left_side_bar{
+  background-color: white;
+  border: 2px solid silver;
+}
+.mid-top-container{
+  background-color: white;
+  border: 2px solid silver;
+}
+.profile_links{
+  color: green !important;
+}
+/* ************************ End of user profile page **************************** */
 /* ********************************** Technology Page ************************************ */
 
 .tech_heading_row{
@@ -68,8 +111,10 @@ a:link, a:active, a:visited, a:hover, a:focus {
   text-align: center;
 }
 .tech_post_container{
-  border: 3px solid black;
+  background-color: white;
+  border: 2px solid silver;
 }
 .tech_noticiactions{
-  border: 2px solid black;
+ background-color: white;
+  border: 2px solid silver;
 }

@@ -1,5 +1,5 @@
 <!-- Encloses everything -->
-<div class="container-fluid">
+<div class="container-fluid ">
 
   <div class="row">
     <!-- White space -->
@@ -10,17 +10,18 @@
     <div class="col-md-2 left_side_bar">
       <ul class="technologies-container">
         <li ng-repeat="tech in technologies">
-          {{tech.Name}}
+          <a ng-href="#!/technology/{{tech.id}}" class="profile_links">{{tech.Name}}</a>
+          <hr>
         </li>
       </ul>
     </div>
 
     <!-- Center stack -->
-    <div class="col-md-6">
-      <div class="row">
+    <div class=" col-md-6 ">
+      <div class="row ">
         <!-- This will hold the input box, that will allow the user to make a new post -->
-        <div class="col-md-12 mid-top-container">
-          <input type="text" name="new_post" placeholder="WATCH'YA CODING?" ng-model="post.Post">
+        <div class="col-md-12 mid-top-container ">
+          <input type="text " name="new_post " placeholder="WATCH 'YA CODING?" ng-model="post.Post">
           <input type="submit" name="Post" ng-click="create_post()">
         </div>
       </div>
@@ -33,7 +34,13 @@
           <!-- This container is to hold the post -->
           <div class="posts">
             <li ng-repeat="post in pulled_posts">
-              {{post.Post}}
+              <div class="actual_profile_post">
+                {{post.Post}}
+                <hr>
+                <input type="text" placeholder="Comment">
+                <a href="#" class="comments_link">Comments</a>
+                <input type="submit" value="Post">
+              </div>
             </li>
           </div>
         </div>

@@ -44,8 +44,17 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-          <input type="text" placeholder="Upcoming Event?">
-          <input type="submit" name="Post">
+          <div class="upcoming_events_container">
+            <li ng-repeat="event in events">
+              {{event.post}}
+              <hr>
+            </li>
+          </div>
+          <input type="text" placeholder="Upcoming Event?" ng-model="new_event.post">
+          <input type="date" placeholder="What's the date?" ng-model="new_event.date">
+          <input type="time" placeholder="What time?" ng-model="new_event.time">
+          <input type="text" placeholder="Where is it?" ng-model="new_event.location">
+          <input type="submit" name="Post" ng-click="add_new_event()">
         </div>
         <div class="col-md-1"></div>
       </div>

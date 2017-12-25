@@ -295,6 +295,34 @@ app.factory('database', function ($q, $http, $window, $cookies) {
         });
     });
   };
-  // **************************END OF TECHNOLOGY********************************* 
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event };
+  // **************************END OF TECHNOLOGY*********************************
+  // ************************* Upcoming Events ********************************
+  const add_new_event = function (a) {
+    return $q((resolve, reject) => {
+      $http.post(`${URL}/upcoming_events`, a, {
+        headers: { 'Authorization': `${get_cookies()}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  const pull_events = function (a) {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/upcoming_events/${a}`, {
+        headers: { 'Authorization': `${get_cookies()}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  // ************************ End of Upcoming Events
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events };
 });
