@@ -6,19 +6,12 @@
     </div>
     <div class="col-md-2"></div>
     <div class="col-md-4">
-      <!-- This table will hold the search bar and the search results -->
-      <table>
-        <!-- Search bar, and submit button -->
-        <tr>
-          <input type="search" name="techSearch" id="techSearch">
-          <input type="submit" value="Search">
-        </tr>
-        <!-- Search results -->
-      </table>
+
     </div>
     <!-- This column will hold the login/logout/and profile buttons depending on if a user is logged in. -->
     <div class="col-md-2 log_in_container">
-      <a ng-href="#!/login" id="login">Login</a>
+      <a ng-click="logout()" ng-show="validate()">Log Out</a>
+      <a ng-href="#!/login" id="login" ng-hide="validate()">Login</a>
       <a ng-href="#!/user_profile">Profile</a>
     </div>
   </div>

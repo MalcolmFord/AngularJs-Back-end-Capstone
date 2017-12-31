@@ -2,7 +2,7 @@
 
 app.controller('user_profile', function ($scope, $routeParams, database) {
   const get_current_user = function () {
-    console.log('aaa', database.get_current_user());
+    // console.log('aaa', database.get_current_user());
     return database.get_current_user();
   };
   $scope.post = {
@@ -13,7 +13,7 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
   const pull_posts = function () {
     database.pull_posts()
       .then((data) => {
-        console.log('these are the pulled posts', data.data.data);
+        // console.log('these are the pulled posts', data.data.data);
         $scope.pulled_posts = data.data.data;
       });
   };

@@ -13,7 +13,7 @@ app.controller('message_board', function ($scope, $routeParams, database) {
   const pull_messages = function () {
     database.pull_message_board_messages(route_id)
       .then((data) => {
-        console.log('pulled messages', data);
+        // console.log('pulled messages', data);
         $scope.messages = data.data.data;
       });
   };
@@ -24,12 +24,12 @@ app.controller('message_board', function ($scope, $routeParams, database) {
       "Technology_id": route_id,
       "post": $scope.message_input
     };
-    console.log('new message', new_message);
-    console.log('route id', route_id);
+    // console.log('new message', new_message);
+    // console.log('route id', route_id);
 
     database.add_new_message_post(new_message, route_id)
       .then((data) => {
-        console.log('message data', data);
+        // console.log('message data', data);
         pull_messages();
       });
   };

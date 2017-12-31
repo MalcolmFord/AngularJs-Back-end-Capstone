@@ -74,13 +74,18 @@ app.factory('database', function ($q, $http, $window, $cookies) {
           token = data.data.auth_token;
           current_user = data.data.user_id;
           set_cookies();
-          console.log('cookies', get_cookies());
+          // console.log('cookies', get_cookies());
           resolve(data);
 
         });
     });
   };
-  // This will return the user's id
+  // This will "log out" the user
+  const logout = function () {
+    token = "";
+    current_user = "";
+    set_cookies();
+  };
   // ***************************** End of auth functions *****************************************
   // *************************** Technology_posts *************************
   const new_admin_post = function (a, b) {
@@ -113,7 +118,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   const update_tech_post = function (a, b) {
     let data = JSON.stringify(b);
     return $q((resolve, reject) => {
-      console.log('we made it this far to update', b);
+      // console.log('we made it this far to update', b);
 
       $http.patch(`${URL}/technologies/${a}/technology_posts/${a}`, data, {
         header: { 'Authorization': `${get_cookies().user_auth}` }
@@ -173,12 +178,12 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   // *************************** Message board  ***************************
   const add_new_message_post = function (a, b) {
     var toke = get_cookies();
-    console.log('pulling post cookiees', toke.user_auth);
+    // console.log('pulling post cookiees', toke.user_auth);
     var authorization = toke.user_auth;
     var user = toke.user_id;
     return $q((resolve, reject) => {
       let data = JSON.stringify(a);
-      console.log('stringified data', a);
+      // console.log('stringified data', a);
 
       $http.post(`${URL}/technologies/${b}/messageboards`, a, {
         headers: { 'Authorization': `${get_cookies().user_auth}` }
@@ -195,7 +200,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   // Pull messages
   const pull_message_board_messages = function (a) {
     var toke = get_cookies();
-    console.log('pulling post cookiees', toke.user_auth);
+    // console.log('pulling post cookiees', toke.user_auth);
     var authorization = toke.user_auth;
     var user = toke.user_id;
     return $q((resolve, reject) => {
@@ -220,7 +225,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
         headers: { 'Authorization': `${get_cookies()}` }
       })
         .then((data) => {
-          console.log('post data', data);
+          // console.log('post data', data);
 
           resolve(data);
         })
@@ -234,21 +239,21 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   const pull_posts = function () {
     return $q((resolve, reject) => {
       var toke = get_cookies();
-      console.log('pulling post cookiees', toke.user_auth);
+      // console.log('pulling post cookiees', toke.user_auth);
       var authorization = toke.user_auth;
       var user = toke.user_id;
       $http.get(`${URL}/users/${user}/personal_posts/${user}`, {
         headers: { 'Authorization': `${authorization}` }
       })
         .then((data) => {
-          console.log('pulled data cookies', get_cookies());
+          // console.log('pulled data cookies', get_cookies());
 
           // console.log('database pulled posts', data);
 
           resolve(data);
         })
         .catch((error) => {
-          console.log('error pulling posts', error);
+          // console.log('error pulling posts', error);
 
         });
     });
@@ -276,7 +281,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
           resolve(data);
         })
         .catch((error) => {
-          console.log('There was a problem getting the technology posts', error);
+          // console.log('There was a problem getting the technology posts', error);
         });
     });
   };
@@ -324,5 +329,5 @@ app.factory('database', function ($q, $http, $window, $cookies) {
     });
   };
   // ************************ End of Upcoming Events
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout };
 });

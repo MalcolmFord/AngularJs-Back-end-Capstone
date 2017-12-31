@@ -20,7 +20,7 @@ app.controller('new_technology', function ($scope, $routeParams, database, cloud
     // });
     database.create_new_technology($scope.new_technology)
       .then((data) => {
-        console.log('Data returned from creating new technology', data);
+        // console.log('Data returned from creating new technology', data);
       });
   };
 });

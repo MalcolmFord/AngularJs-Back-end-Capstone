@@ -10,7 +10,7 @@ app.controller('login', function ($scope, $routeParams, database, $window) {
   $scope.login = function () {
     database.login($scope.credentials)
       .then((data) => {
-        console.log('Logged in data', data);
+        // console.log('Logged in data', data);
         $window.location.href = '#!/user_profile';
       });
   };

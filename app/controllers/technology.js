@@ -34,7 +34,7 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
       "Technology_id": route_id,
       "Post": admin_input
     };
-    console.log('clicked add new admin post', new_post);
+    // console.log('clicked add new admin post', new_post);
     database.new_admin_post(route_id, new_post)
       .then((data) => {
         pull_admin_posts();
@@ -48,9 +48,9 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
 
   // This will update the input box with the post to be updated
   $scope.edit = function (a) {
-    console.log('edit clicked', a);
+    // console.log('edit clicked', a);
     // This is taking the post's id, sending it to the database, getting that same post back, and setting the input box equal to that post's value
-    console.log('fetched post data', a.Post);
+    // console.log('fetched post data', a.Post);
     $scope.admin_post = a.Post;
     update_id = a.id;
     // This will mark a variable true, so that the update button shows
@@ -83,7 +83,7 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
     database.pull_events(route_id)
       .then((data) => {
         $scope.events = data.data.data;
-        console.log('events data', $scope.events);
+        // console.log('events data', $scope.events);
       });
   };
   $scope.new_event = {
@@ -96,7 +96,7 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
   };
   // Creates a new event
   $scope.add_new_event = function () {
-    console.log('the sent data', $scope.new_event);
+    // console.log('the sent data', $scope.new_event);
 
     database.add_new_event($scope.new_event)
       .then((data) => {
