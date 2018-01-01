@@ -10,8 +10,8 @@
     </div>
     <!-- This column will hold the login/logout/and profile buttons depending on if a user is logged in. -->
     <div class="col-md-2 log_in_container">
-      <a ng-click="logout()" ng-show="validate()">Log Out</a>
-      <a ng-href="#!/login" id="login" ng-hide="validate()">Login</a>
+      <a ng-href="#!/" ng-click="logout()" ng-show="!validate(current_user)">Log Out</a>
+      <a ng-href="#!/login" id="login" ng-show="validate(current_user)">Login</a>
       <a ng-href="#!/user_profile">Profile</a>
     </div>
   </div>
