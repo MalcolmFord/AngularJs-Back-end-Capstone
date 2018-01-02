@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('login', function ($scope, $routeParams, database, $window) {
+app.controller('login', function ($scope, $routeParams, database, $window, $route) {
   // These are the user inputs for the login
   $scope.credentials = {
     email: "",
@@ -12,6 +12,7 @@ app.controller('login', function ($scope, $routeParams, database, $window) {
       .then((data) => {
         // console.log('Logged in data', data);
         $window.location.href = '#!/user_profile';
+        $route.reload();
       });
   };
 

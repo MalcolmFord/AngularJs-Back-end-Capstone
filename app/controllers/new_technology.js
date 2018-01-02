@@ -23,4 +23,9 @@ app.controller('new_technology', function ($scope, $routeParams, database, cloud
         // console.log('Data returned from creating new technology', data);
       });
   };
+  $scope.image_to_upload;
+  $scope.image = function () {
+    console.log('image to upload', $scope.image_to_upload);
+  };
+
 });

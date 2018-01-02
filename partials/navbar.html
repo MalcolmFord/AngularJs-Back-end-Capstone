@@ -12,7 +12,7 @@
     <div class="col-md-2 log_in_container">
       <a ng-href="#!/" ng-click="logout()" ng-show="!validate(current_user)">Log Out</a>
       <a ng-href="#!/login" id="login" ng-show="validate(current_user)">Login</a>
-      <a ng-href="#!/user_profile">Profile</a>
+      <a ng-href="#!/user_profile" ng-show="!validate(current_user)">Profile</a>
     </div>
   </div>
 </div>
