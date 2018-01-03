@@ -13,7 +13,7 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
   const pull_posts = function () {
     database.pull_posts()
       .then((data) => {
-        // console.log('these are the pulled posts', data.data.data);
+        console.log('these are the pulled posts', data.data.data);
         $scope.pulled_posts = data.data.data;
       });
   };
@@ -43,10 +43,21 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     let token = database.get_token;
     let user_id = database.current_user;
   };
-  pulled_technologies();
 
-  let new_token = database.get_token();
+  // This creates a new comment and sends it to the database
+  $scope.create_comment = function (a) {
+    let new_comment = {
+      "Personal_post_id": a,
+      "User_id": get_current_user(),
+      "Comment": $scope.comment
+    };
+    database.create_comment(new_comment);
+
+  };
+
+  // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
+  pulled_technologies();
   get_current_user();
   pull_posts();
 });

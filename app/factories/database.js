@@ -260,6 +260,23 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   };
 
   // ********************************** End of Personal Posts ******************************
+  // **************************** Personal Post Comments *******************************
+  const create_comment = function (a) {
+    return $q((resolve, reject) => {
+      $http.post(`${URL}/users/${current_user}/personal_comments`, a, {
+        headers: { 'Authorization': `${get_cookies()}` }
+      })
+        .then((data) => {
+          console.log('database comment created', data);
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  // **************************** End of Personal Post Comments ************************
+
   // *************************** Technology********************************
   // This will pull down all of the Technologies
   const get_technologies = function (token) {
@@ -329,5 +346,5 @@ app.factory('database', function ($q, $http, $window, $cookies) {
     });
   };
   // ************************ End of Upcoming Events
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout, create_comment };
 });

@@ -18,12 +18,21 @@
     <!-- This is the post container -->
     <div class="col-md-5">
       <div class="tech_post_container">
-        <li class="tech_post_admin" ng-repeat="post in admin_posts">
-          <!-- This will be the actuall posts made by the admin -->
-          {{post.Post}}
-          <button ng-click=edit(post)>Edit</button>
-          <button ng-click="delete(post.id)">Delete</button>
-        </li>
+        <div class="row">
+          <li class="tech_post_admin" ng-repeat="post in admin_posts">
+            <div class="col-md-8">
+              <!-- This will be the actuall posts made by the admin -->
+              <P>{{post.Post}}</P>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-3">
+              <a ng-click=edit(post)>Edit</a> |
+              <a ng-click="delete(post.id)">Delete</a>
+            </div>
+          </li>
+        </div>
+
         <div class="row">
           <div class="col-md-3"></div>
           <!-- *******This will be the input box for Admin posts**********************-->

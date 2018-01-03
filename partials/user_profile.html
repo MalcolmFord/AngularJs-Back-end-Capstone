@@ -37,9 +37,13 @@
               <div class="actual_profile_post">
                 {{post.Post}}
                 <hr>
-                <input type="text" placeholder="Comment">
-                <a href="#" class="comments_link">Comments</a>
-                <input type="submit" value="Post">
+                <div class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Comments</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <input type="text" placeholder="Comment" ng-model="comment">
+                    <input type="submit" value="Post" ng-model="create_comment(post.id)">
+                  </div>
+                </div>
               </div>
             </li>
           </div>
