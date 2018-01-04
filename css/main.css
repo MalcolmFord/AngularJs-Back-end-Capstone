@@ -92,6 +92,14 @@ a:link, a:active, a:visited, a:hover, a:focus {
 .profile_links{
   color: green !important;
 }
+.personal_comments_holder{
+  background-color: white;
+  border: 1px solid silver;
+  position: fixed;
+  max-height: 350px;
+  max-width: 300px;
+  top: 22%;
+}
 /* ************************ End of user profile page **************************** */
 /* ********************************** Technology Page ************************************ */
 

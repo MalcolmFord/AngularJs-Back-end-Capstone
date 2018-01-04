@@ -43,7 +43,17 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     let token = database.get_token;
     let user_id = database.current_user;
   };
+  // This pulls the user's comments
+  $scope.pull_comments = function (a) {
+    database.pull_personal_post_comments(a)
+      .then((data) => {
+        console.log('pulled comments', data.data.data);
+        $scope.pulled_comments = data.data.data;
+        $scope.comment_id = a;
+        console.log('pulled id', $scope.comment_id);
 
+      });
+  };
   // This creates a new comment and sends it to the database
   $scope.new_comment = {};
   $scope.create_comment = function (a) {
@@ -51,9 +61,24 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     $scope.new_comment.Personal_post_id = a;
     $scope.new_comment.User_id = get_current_user();
     console.log('personal comment sent', $scope.new_comment);
-
-    database.create_comment($scope.new_comment);
+    database.create_comment($scope.new_comment)
+      .then((data) => {
+        $scope.pull_comments(a);
+      });
   };
+  // This code will 1) create a boolean value that will decide if the comments section is shown, 2) display the original post, a section to make new comments, and all of the comments that have already been made.
+
+  // This will return true of false, (logic to display comments section)
+  $scope.show_comments_table = function (a) {
+    if (a == 1) {
+      console.log('show_comments_table', true);
+      return true;
+    } else {
+      console.log('show_comments_table', false);
+      return false;
+    };
+  };
+
 
   // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
