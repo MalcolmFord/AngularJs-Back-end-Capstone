@@ -264,7 +264,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   const create_comment = function (a) {
     return $q((resolve, reject) => {
       $http.post(`${URL}/users/${current_user}/personal_comments`, a, {
-        headers: { 'Authorization': `${get_cookies()}` }
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
       })
         .then((data) => {
           console.log('database comment created', data);

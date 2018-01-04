@@ -12,7 +12,10 @@ app.controller('nav_controller', function ($scope, $routeParams, database, $wind
   };
   // This logic checks to see if the variable "current_user" is empty
   $scope.validate = function (a) {
-    if (a === "")
+    // console.log('log in a', a);
+    // console.log('cu', $scope.current_user);
+
+    if ($scope.current_user === "" || $scope.current_user === undefined)
       return true;
     // $scope.$apply;
     else
@@ -24,6 +27,7 @@ app.controller('nav_controller', function ($scope, $routeParams, database, $wind
     database.logout();
     $scope.current_user = "";
     $scope.validate($scope.current_user);
+    $scope.apply;
     $window.location.href = '#!/';
   };
   // This checks to see if the current path is the user profile, if so it will run the validate function

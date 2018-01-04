@@ -11,6 +11,7 @@ app.controller('login', function ($scope, $routeParams, database, $window, $rout
     database.login($scope.credentials)
       .then((data) => {
         // console.log('Logged in data', data);
+
         $window.location.href = '#!/user_profile';
         $route.reload();
       });

@@ -44,15 +44,16 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     let user_id = database.current_user;
   };
 
+  let comment = $scope.user_comment = "";
   // This creates a new comment and sends it to the database
   $scope.create_comment = function (a) {
+    console.log('personal comment sent', comment);
     let new_comment = {
       "Personal_post_id": a,
       "User_id": get_current_user(),
-      "Comment": $scope.comment
+      "Comment": comment
     };
-    database.create_comment(new_comment);
-
+    // database.create_comment(new_comment);
   };
 
   // let new_token = database.get_token();

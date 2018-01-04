@@ -17,7 +17,7 @@
     </div>
 
     <!-- Center stack -->
-    <div class=" col-md-6 ">
+    <div class=" col-md-7 ">
       <div class="row ">
         <!-- This will hold the input box, that will allow the user to make a new post -->
         <div class="col-md-12 mid-top-container ">
@@ -29,8 +29,8 @@
       <!-- This will contain the posts made be the user. -->
       <div class="row">
         <!-- White space -->
-        <div class="col-md-3"></div>
-        <div class="col-md-6 post_container">
+        <div class="col-md-2"></div>
+        <div class="col-md-7 post_container">
           <!-- This container is to hold the post -->
           <div class="posts">
             <li ng-repeat="post in pulled_posts">
@@ -40,8 +40,8 @@
                 <div class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown">Comments</a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <input type="text" placeholder="Comment" ng-model="comment">
-                    <input type="submit" value="Post" ng-model="create_comment(post.id)">
+                    <input type="text" placeholder="Comment" ng-model="user_comment">
+                    <input type="submit" value="Post" ng-click="create_comment(post.id)">
                   </div>
                 </div>
               </div>
@@ -49,14 +49,14 @@
           </div>
         </div>
         <!-- White space -->
-        <div class="col-md-3"></div>
+        <div class=" col-md-2 "></div>
       </div>
     </div>
 
 
     <!-- ***********************right sidebar******************************* -->
-    <div class="col-md-2 right_side_bar">
-      <a ng-href="#!/new_technology">Create New Technology</a>
+    <div class="col-md-2 right_side_bar ">
+      <a ng-href="#!/new_technology ">Create New Technology</a>
     </div>
   </div>
 </div>
