@@ -17,7 +17,7 @@
     </div>
 
     <!-- Center stack -->
-    <div class=" col-md-7 ">
+    <div class=" col-md-4 ">
       <div class="row ">
         <!-- This will hold the input box, that will allow the user to make a new post -->
         <div class="col-md-12 mid-top-container ">
@@ -29,8 +29,8 @@
       <!-- This will contain the posts made be the user. -->
       <div class="row">
         <!-- White space -->
-        <div class="col-md-2"></div>
-        <div class="col-md-7 post_container">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 post_container">
           <!-- This container is to hold the post -->
           <div class="posts">
             <li ng-repeat="post in pulled_posts">
@@ -38,25 +38,33 @@
                 {{post.Post}}
                 <hr>
                 <div class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown">Comments</a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <input type="text" placeholder="Comment" ng-model="new_comment.Comment">
-                    <input type="submit" value="Post" ng-click="create_comment(post.id)">
-                  </div>
+                  <button class="dropdown-toggle" data-toggle="collapse" data-target="#comments_holder" ng-click="pull_comments(post.id)">Comments</button>
+
                 </div>
               </div>
             </li>
           </div>
         </div>
-        <!-- White space -->
-        <div class=" col-md-2 "></div>
+
       </div>
     </div>
-
+    <!-- ******************* Comments Section ****************************** -->
+    <div class="col-md-3">
+      <div class="personal_comments_holder collapse collapsing" id="comments_holder">
+        <li ng-repeat="comment in pulled_comments">
+          {{comment.Comment}}
+        </li>
+        <hr>
+        <div class="fixed-bottom">
+          <input type="text" placeholder="Comment" ng-model="new_comment.Comment" class="fixed-bottom">
+          <input type="submit" value="Post" ng-click="create_comment(comment_id)" class="fixed-bottom">
+        </div>
+      </div>
+    </div>
 
     <!-- ***********************right sidebar******************************* -->
     <div class="col-md-2 right_side_bar ">
       <a ng-href="#!/new_technology ">Create New Technology</a>
     </div>
+    </daiv>
   </div>
-</div>
