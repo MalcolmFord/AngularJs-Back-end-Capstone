@@ -8,6 +8,7 @@
     </div>
     <div class=" col-md-4 ">
       <button class="button" ng-click="redirect();">Message Board</button>
+      <button class="btn-primary">Join</button>
     </div>
   </div>
 
@@ -55,7 +56,12 @@
         <div class="col-md-10">
           <div class="upcoming_events_container">
             <li ng-repeat="event in events">
-              {{event.post}}
+              <div class="col-md-8">
+                {{event.post}}
+              </div>
+              <div class="col-md-4">
+                <button ng-click="going_to_event(event.id)">Going?</button>
+              </div>
               <hr>
             </li>
           </div>

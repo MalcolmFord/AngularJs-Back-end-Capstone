@@ -100,6 +100,29 @@ a:link, a:active, a:visited, a:hover, a:focus {
   max-width: 300px;
   top: 22%;
 }
+.profile_image {
+  max-width: 150px;
+}
+.post_image_container{
+  max-width: 40px;
+}
+hr {
+  padding: 5px;
+  margin: 0;
+}
+.events_container{
+  max-width: 480px;
+  min-height: 200px;
+  background-color: white;
+  border: 2px solid silver;
+  position:fixed;
+  top: 60%;
+
+}
+.upcoming_event{
+  border: 2px silver solid;
+  min-height: 100%;
+}
 /* ************************ End of user profile page **************************** */
 /* ********************************** Technology Page ************************************ */
 
