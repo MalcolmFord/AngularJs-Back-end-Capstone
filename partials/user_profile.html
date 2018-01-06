@@ -8,12 +8,10 @@
     </div>
     <!-- left sidebar -->
     <div class="col-md-2 left_side_bar">
-      <ul class="technologies-container">
-        <li ng-repeat="tech in technologies">
-          <a ng-href="#!/technology/{{tech.id}}" class="profile_links">{{tech.Name}}</a>
-          <hr>
-        </li>
-      </ul>
+      <div class="profile_image">
+        <img src="./images/images.jpg" class="img-fluid">
+      </div>
+      <h3>{{pulled_account.First_name}} {{pulled_account.Last_name}}</h3>
     </div>
 
     <!-- Center stack -->
@@ -35,7 +33,18 @@
           <div class="posts">
             <li ng-repeat="post in pulled_posts">
               <div class="actual_profile_post">
-                {{post.Post}}
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="post_image_container">
+                      <img src="./images/images.jpg" class="img-fluid">
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    {{pulled_account.First_name}} {{pulled_account.Last_name}}
+                  </div>
+                </div>
+
+                <p>{{post.Post}}</p>
                 <hr>
                 <div class="dropdown">
                   <button class="dropdown-toggle" data-toggle="collapse" data-target="#comments_holder" ng-click="pull_comments(post.id)">Comments</button>
@@ -51,13 +60,37 @@
     <!-- ******************* Comments Section ****************************** -->
     <div class="col-md-3">
       <div class="personal_comments_holder collapse collapsing" id="comments_holder">
-        <li ng-repeat="comment in pulled_comments">
-          {{comment.Comment}}
-        </li>
-        <hr>
+        <div class="row">
+          <li ng-repeat="comment in pulled_comments">
+            <div class="col-md-2">
+              <div class="">
+                <img src="./images/images.jpg" class="img-fluid">
+              </div>
+            </div>
+            <div class="col-md-10">
+
+              {{pulled_account.First_name}} {{pulled_account.Last_name}}
+              <br> {{comment.Comment}}
+              <hr>
+            </div>
+          </li>
+        </div>
         <div class="fixed-bottom">
           <input type="text" placeholder="Comment" ng-model="new_comment.Comment" class="fixed-bottom">
           <input type="submit" value="Post" ng-click="create_comment(comment_id)" class="fixed-bottom">
+        </div>
+      </div>
+      <!-- This will be the section that contains the user's upcoming events -->
+      <div class="row">
+        <div class="col-lg-12 events_container">
+          <h5>UPCOMING EVENTS</h5>
+          <hr>
+          <!-- The actual events will go here -->
+          <div class="row">
+            <div class="col-md-4 upcoming_event">
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,6 +98,7 @@
     <!-- ***********************right sidebar******************************* -->
     <div class="col-md-2 right_side_bar ">
       <a ng-href="#!/new_technology ">Create New Technology</a>
+      <a>Settings</a>
     </div>
     </daiv>
   </div>

@@ -3,7 +3,7 @@
 app.controller('technology', function ($scope, $routeParams, database, $window) {
   // ********************************** GLOBAL VARIABLES ***********************************
   let route_id = $routeParams.id;
-  let current_user;
+
   let returned_user_block = database.get_cookies();
   let returned_user = returned_user_block.user_id;
   var update_id;
@@ -86,6 +86,7 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
         // console.log('events data', $scope.events);
       });
   };
+  // Make new event
   $scope.new_event = {
     "User_id": returned_user,
     "Technology_id": route_id,
@@ -103,6 +104,20 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
         pull_events();
       });
   };
+
+  // This lets the user attend an event
+  $scope.go_to_event = {};
+  $scope.going_to_event = function (a) {
+    $scope.go_to_event.User_id = returned_user;
+    $scope.go_to_event.Upcoming_event_id = a;
+    // console.log('going to event', $scope.go_to_event);
+    database.attending_event($scope.go_to_event)
+      .then((data) => {
+        console.log('attending event ', data);
+
+      });
+  };
+
 
   pull_technology_info();
   pull_admin_posts();

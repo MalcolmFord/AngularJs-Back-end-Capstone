@@ -33,12 +33,13 @@ app.config(($routeProvider) => {
       controller: 'message_board'
     });
 
-  app.config((cloudinaryProvider) => {
-    cloudinaryProvider.config({
-      upload_endpoint: 'https://api.cloudinary.com/v1_1/',
-      cloud_name: 'codemunity',
-      api_key: '631923789456471',
-      api_secret: 'RRjMIuctafKwafpUsAiMcWKuiHU'
-    });
+  app.run(($location, FBCreds) => {
+    let creds = FBCreds;
+    let authConfig = {
+      apiKey: creds.apiKey,
+      authDomain: creds.authDomain,
+      databaseURL: creds.databaseURL
+    };
+    firebase.initializeApp(authConfig);
   });
 });

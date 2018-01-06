@@ -1,6 +1,13 @@
 'use strict';
 
 app.controller('user_profile', function ($scope, $routeParams, database) {
+  const account = function () {
+    database.account_info()
+      .then((data) => {
+        console.log('returned account', data.data.data);
+        $scope.pulled_account = data.data.data;
+      });
+  };
   const get_current_user = function () {
     // console.log('aaa', database.get_current_user());
     return database.get_current_user();
@@ -82,6 +89,7 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
 
   // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
+  account();
   pulled_technologies();
   get_current_user();
   pull_posts();

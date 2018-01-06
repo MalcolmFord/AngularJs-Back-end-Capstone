@@ -86,6 +86,19 @@ app.factory('database', function ($q, $http, $window, $cookies) {
     current_user = "";
     set_cookies();
   };
+  const account_info = function () {
+    return $q((resolve, reject) => {
+      $http.get(`${URL}/users/${get_cookies().user_id}`, {
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
   // ***************************** End of auth functions *****************************************
   // *************************** Technology_posts *************************
   const new_admin_post = function (a, b) {
@@ -173,6 +186,21 @@ app.factory('database', function ($q, $http, $window, $cookies) {
   // This will delete events
   const delete_event = function () {
 
+  };
+
+  // **************** SUBSET /  Attending an event ********************************
+  const attending_event = function (a) {
+    return $q((resolve, reject) => {
+      $http.post(`${URL}/attending_events`, a, {
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((errors) => {
+          reject(errors);
+        });
+    });
   };
   // ************************************* End of Upcoming Events **************************************   
   // *************************** Message board  ***************************
@@ -359,5 +387,5 @@ app.factory('database', function ($q, $http, $window, $cookies) {
     });
   };
   // ************************ End of Upcoming Events
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout, create_comment, pull_personal_post_comments };
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout, create_comment, pull_personal_post_comments, account_info, attending_event };
 });
