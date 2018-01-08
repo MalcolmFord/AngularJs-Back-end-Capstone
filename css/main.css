@@ -56,6 +56,11 @@ a:link, a:active, a:visited, a:hover, a:focus {
 }
 .card {
   background-color: black;
+  min-height: 323px;
+  max-height: 323px;
+  max-width: 220px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .img-fluid{
   max-width: 100%;
