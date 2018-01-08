@@ -11,27 +11,38 @@
   </div>
   <!-- This section will be the message board area -->
   <div class="row">
-    <div class="col-md-1"></div>
+    <div class="col-md-3"></div>
     <!-- This is the main space for the messages to be displayed -->
-    <div class="col-md-10">
+    <div class="col-md-6">
       <!-- This row will hold the actuall messages -->
       <div class="row">
-        <li ng-repeat="message in messages">
-          {{message.post}}
-        </li>
+        <!-- Messages container -->
+        <div class="m_container">
+          <li ng-repeat="message in messages" class="m">
+            <!-- <div class="m_message"> -->
+            <hr>
+            <div>
+              <p>"
+                < place holder for user name ">
+              </p>
+              </div>
+              {{message.post}}
+            <!-- </div> -->
+          </li>
+        </div>
       </div>
       <!-- This row will hold the user inputs -->
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+      <div class="row ">
+        <div class="col-md-3 "></div>
+        <div class="col-md-6 ">
           <!-- These are the actuall inputs -->
-          <input type="text" placeholder="What's on your mind?" ng-model="message_input">
+          <input type="text " placeholder="What 's on your mind?" ng-model="message_input">
           <input type="submit" name="Post" ng-click="add_post();">
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
       </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-3"></div>
   </div>
 
 </div>
