@@ -4,8 +4,9 @@ app.controller('message_board', function ($scope, $routeParams, database) {
   let route_id = $routeParams.id;
   // This will pull the technology's name
   const pull_tech = function () {
-    database.pull_tech()
+    database.pull_technology(route_id)
       .then((data) => {
+        console.log('data.data.', data.data.data);
         $scope.technology_name = data.data.data.Name;
       });
   };
@@ -13,7 +14,7 @@ app.controller('message_board', function ($scope, $routeParams, database) {
   const pull_messages = function () {
     database.pull_message_board_messages(route_id)
       .then((data) => {
-        console.log('pulled messages', data);
+        console.log('pulled messages', data.data.data);
         $scope.messages = data.data.data;
       });
   };
@@ -34,6 +35,6 @@ app.controller('message_board', function ($scope, $routeParams, database) {
       });
   };
 
-
+  pull_tech();
   pull_messages();
 });
