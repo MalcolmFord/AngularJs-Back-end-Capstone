@@ -9,13 +9,22 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
   var update_id;
   // ********************************** END OF GLOBAL VARIABLES ***************************************
 
-  // This will pull the technology posts based on the technology id, which is (route_id).
+  // This will pull the technology info based on the technology id, which is (route_id).
   const pull_technology_info = function () {
     database.pull_technology(route_id)
       .then((data) => {
         $scope.technology_name = data.data.data.Name;
         $scope.technology_description = data.data.data.Description;
+        // console.log('technology', data.data.data.User_id);
+        $scope.admin = data.data.data.User_id;
       });
+  };
+  $scope.prove_admin = function () {
+    if (returned_user == $scope.admin)
+      return true;
+    else
+      return false;
+
   };
 
   // This will pull the admin posts using (route_id)
