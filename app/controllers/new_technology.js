@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('new_technology', function ($scope, $routeParams, database, cloudinary) {
+app.controller('new_technology', function ($scope, $routeParams, database, cloudinary, $window) {
   let current_user = database.get_current_user();
   // This is taking the user's input for a new technology
   $scope.new_technology = {
@@ -20,7 +20,9 @@ app.controller('new_technology', function ($scope, $routeParams, database, cloud
     // });
     database.create_new_technology($scope.new_technology)
       .then((data) => {
-        // console.log('Data returned from creating new technology', data);
+        console.log('Data returned from creating new technology', data);
+        var new_tech = data.data.data.id;
+        $window.location.href = `#!/technology/${new_tech}`;
       });
   };
   $scope.image_to_upload;
