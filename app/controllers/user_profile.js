@@ -86,11 +86,20 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
     };
   };
 
+  // Pulls the upcoming events based on the user's id
+  const pull_upcoming_events = function () {
+    database.pull_attending_event()
+      .then((data) => {
+        console.log('u[', data.data.data);
+        $scope.upcoming_events = data.data.data
+      });
+  };
 
   // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
+  get_current_user();
+  pull_upcoming_events();
   account();
   pulled_technologies();
-  get_current_user();
   pull_posts();
 });

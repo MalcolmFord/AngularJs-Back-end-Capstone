@@ -12,6 +12,11 @@
         <img src="./images/images.jpg" class="img-fluid">
       </div>
       <h3>{{pulled_account.First_name}} {{pulled_account.Last_name}}</h3>
+      <div class="joined_technologies">
+        <li ng-repeat="tech in joined_technologies">
+
+        </li>
+      </div>
     </div>
 
     <!-- Center stack -->
@@ -87,8 +92,8 @@
           <hr>
           <!-- The actual events will go here -->
           <div class="row">
-            <div class="col-md-4 upcoming_event">
-
+            <div class="col-md-4 " ng-repeat="upcoming_events in upcoming_events">
+              {{upcoming_events.post}} {{upcoming_events.date}} {{upcoming_events.location}}
             </div>
           </div>
         </div>
