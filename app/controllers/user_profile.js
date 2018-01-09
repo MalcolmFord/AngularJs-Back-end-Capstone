@@ -94,10 +94,17 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
         $scope.upcoming_events = data.data.data
       });
   };
-
+  const pull_joined_communities = function () {
+    database.pull_joined_communities(get_current_user())
+      .then((data) => {
+        console.log('pull_joined_communities', data.data.data);
+        $scope.joined_technologies = data.data.data;
+      });
+  };
   // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
   get_current_user();
+  pull_joined_communities();
   pull_upcoming_events();
   account();
   pulled_technologies();

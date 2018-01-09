@@ -14,7 +14,8 @@
       <h3>{{pulled_account.First_name}} {{pulled_account.Last_name}}</h3>
       <div class="joined_technologies">
         <li ng-repeat="tech in joined_technologies">
-
+          <a href="#!/technology/{{tech.id}}">{{tech.Name}}</a>
+          <hr>
         </li>
       </div>
     </div>

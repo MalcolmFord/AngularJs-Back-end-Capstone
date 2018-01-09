@@ -128,6 +128,9 @@ hr {
   border: 2px silver solid;
   min-height: 100%;
 }
+.joined_technologies{
+  background-color: green;
+}
 /* ************************ End of user profile page **************************** */
 /* ********************************** Technology Page ************************************ */
 

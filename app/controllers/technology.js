@@ -127,6 +127,18 @@ app.controller('technology', function ($scope, $routeParams, database, $window) 
       });
   };
 
+  // This allows the user to join a comminity
+  let new_join = {}
+  $scope.join_community = function () {
+    new_join.User_id = returned_user;
+    new_join.Technology_id = route_id;
+    console.log('new join', new_join);
+
+    database.join_community(new_join)
+      .then((data) => {
+
+      });
+  };
 
   pull_technology_info();
   pull_admin_posts();
