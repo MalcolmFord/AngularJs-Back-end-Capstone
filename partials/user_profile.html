@@ -9,14 +9,22 @@
     <!-- left sidebar -->
     <div class="col-md-2 left_side_bar">
       <div class="profile_image">
-        <img src="./images/images.jpg" class="img-fluid">
+        <img ng-src="{{pulled_account.Profile_photo_url}}" class="img-fluid" ng-click="profile_select()">
       </div>
-      <h3>{{pulled_account.First_name}} {{pulled_account.Last_name}}</h3>
-      <div class="joined_technologies">
-        <li ng-repeat="tech in joined_technologies">
-          <a href="#!/technology/{{tech.id}}">{{tech.Name}}</a>
-          <hr>
-        </li>
+      <h3 class="up_h3">{{pulled_account.First_name}} {{pulled_account.Last_name}}</h3>
+      <div class="row joined_technologies">
+        <h5 class="joined_technologies">Joined Communities</h5>
+        <hr>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="joined_technologies">
+            <li ng-repeat="tech in joined_technologies" class="up_joined_communities">
+              <a href="#!/technology/{{tech.id}}">{{tech.Name}}</a>
+              <hr>
+            </li>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
       </div>
     </div>
 
@@ -42,7 +50,7 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="post_image_container">
-                      <img src="./images/images.jpg" class="img-fluid">
+                      <img ng-src="{{pulled_account.Profile_photo_url}}" class="img-fluid">
                     </div>
                   </div>
                   <div class="col-md-10">
@@ -70,7 +78,7 @@
           <li ng-repeat="comment in pulled_comments">
             <div class="col-md-2">
               <div class="">
-                <img src="./images/images.jpg" class="img-fluid">
+                <img ng-src="{{pulled_account.Profile_photo_url}}" class="img-fluid">
               </div>
             </div>
             <div class="col-md-10">

@@ -31,6 +31,14 @@ app.config(($routeProvider) => {
     .when('/message_board/:id', {
       templateUrl: './partials/message_board.html',
       controller: 'message_board'
+    })
+    .when('/profile_image/:id', {
+      templateUrl: './partials/profile_image.html',
+      controller: 'profile_photo'
+    })
+    .when('/technology_image/:id', {
+      templateUrl: './partials/technology_image.html',
+      controller: 'technology_photo'
     });
 
   app.run(($location, FBCreds) => {

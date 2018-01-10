@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <h1>Choose your profile Image</h1>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" ng-repeat="image in profile_images">
+      <li>
+        <div class="image_container">
+          <img ng-src="./images/profile_logos/{{image}}" class="img-fluid" ng-click="set_profile_image(image)">
+        </div>
+      </li>
+    </div>
+  </div>
+</div>

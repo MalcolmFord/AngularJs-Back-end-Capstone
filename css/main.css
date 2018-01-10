@@ -55,7 +55,7 @@ a:link, a:active, a:visited, a:hover, a:focus {
   border: 2px solid black;
 }
 .card {
-  background-color: black;
+  /* background-color: black; */
   min-height: 323px;
   max-height: 323px;
   max-width: 220px;
@@ -64,7 +64,10 @@ a:link, a:active, a:visited, a:hover, a:focus {
 }
 .img-fluid{
   max-width: 100%;
-  height: auto;
+  margin: auto
+}
+.home_image{
+ margin: auto;
 }
 /****************************** End of user Home Page styles *****************************/
 
@@ -107,6 +110,7 @@ a:link, a:active, a:visited, a:hover, a:focus {
 }
 .profile_image {
   max-width: 150px;
+  margin: auto;
 }
 .post_image_container{
   max-width: 40px;
@@ -130,6 +134,14 @@ hr {
 }
 .joined_technologies{
   background-color: green;
+  text-align: center;
+  color: white;
+}
+.up_h3{
+  text-align: center;
+}
+.up_joined_communities{
+  text-align: center;
 }
 /* ************************ End of user profile page **************************** */
 /* ********************************** Technology Page ************************************ */
@@ -173,3 +185,13 @@ hr {
 .m{
   background-color: whitesmoke;
 }
+/* *********** End of message board ******************* */
+/* ******************** profile image page settings************************ */
+.image_container{
+  min-height: 150px;
+  max-height: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-top: 20px;
+}
+/* *********************** End of profile image page settings *************** */

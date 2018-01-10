@@ -22,7 +22,7 @@ app.controller('new_technology', function ($scope, $routeParams, database, cloud
       .then((data) => {
         console.log('Data returned from creating new technology', data);
         var new_tech = data.data.data.id;
-        $window.location.href = `#!/technology/${new_tech}`;
+        $window.location.href = `#!/technology_image/${new_tech}`;
       });
   };
   $scope.image_to_upload;

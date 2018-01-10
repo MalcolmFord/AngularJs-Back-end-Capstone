@@ -54,6 +54,7 @@ app.factory('database', function ($q, $http, $window, $cookies) {
       $http.post(`${URL}/users`, user_inputs)
         .then((data) => {
           set_token(a);
+          set_cookies();
         })
         .then((data) => {
           resolve(data);
@@ -100,6 +101,21 @@ app.factory('database', function ($q, $http, $window, $cookies) {
     });
   };
   // ***************************** End of auth functions *****************************************
+  // ***************************** User ***************************************************
+  const update_user = function (a, b) {
+    return $q((resolve, reject) => {
+      $http.patch(`${URL}/users/${b}`, a, {
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  // ************************** End of User *****************************************************
   // *************************** Technology_posts *************************
   const new_admin_post = function (a, b) {
     return $q((resolve, reject) => {
@@ -371,6 +387,19 @@ app.factory('database', function ($q, $http, $window, $cookies) {
         });
     });
   };
+  const update_technology = function (a, b) {
+    return $q((resolve, reject) => {
+      $http.patch(`${URL}/technologies/${b}`, a, {
+        headers: { 'Authorization': `${get_cookies().user_auth}` }
+      })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
   // **************************END OF TECHNOLOGY*********************************
   // ************************* Upcoming Events ********************************
   const add_new_event = function (a) {
@@ -427,6 +456,6 @@ app.factory('database', function ($q, $http, $window, $cookies) {
         });
     });
   };
-  // ************************* End of Joined Communities ************************
-  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout, create_comment, pull_personal_post_comments, account_info, attending_event, pull_attending_event, join_community, pull_joined_communities };
+  // ************************* End of Joined Communities **********************
+  return { create_account, get_technologies, set_token, login, create_post, pull_posts, get_current_user, get_token, create_new_technology, pull_technology, new_admin_post, pull_admin_posts, add_new_message_post, pull_message_board_messages, set_cookies, get_cookies, update_tech_post, delete_post, new_event, get_events, update_events, delete_event, add_new_event, pull_events, logout, create_comment, pull_personal_post_comments, account_info, attending_event, pull_attending_event, join_community, pull_joined_communities, update_user, update_technology };
 });

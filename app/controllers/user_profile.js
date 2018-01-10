@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('user_profile', function ($scope, $routeParams, database) {
+app.controller('user_profile', function ($scope, $routeParams, database, $window) {
   const account = function () {
     database.account_info()
       .then((data) => {
@@ -100,6 +100,10 @@ app.controller('user_profile', function ($scope, $routeParams, database) {
         console.log('pull_joined_communities', data.data.data);
         $scope.joined_technologies = data.data.data;
       });
+  };
+  // This will relocate the user to select their profile image
+  $scope.profile_select = function () {
+    $window.location.href = `#!/profile_image/${get_current_user()}`
   };
   // let new_token = database.get_token();
   // console.log('Proper consol log', new_token);
